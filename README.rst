@@ -6,6 +6,7 @@ A serf installer that also sets up the handler directory structure and with samp
 It sets the **-event-handler** flag to **/etc/serf/handlers/router.sh**.  This catch-all event handler appropriately calls all the scripts under the particular event matching the regex "**_handler\.[a-z]{2}$**" for their name.
 
 For example:
+
 * A 'member-join' event, all scripts under /etc/serf/handlers/member-join  will sequentially be executed.
 
 Custom Events
