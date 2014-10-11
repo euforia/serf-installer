@@ -1,0 +1,3 @@
+#!/bin/bash
+
+echo "$SERF_SELF_NAME $SERF_EVENT:$SERF_USER_EVENT"
