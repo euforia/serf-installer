@@ -10,7 +10,7 @@ SERF_INSTALL_DIR="/usr/local/bin"
 startup_script() {
 	echo " * Installing startup scripts..."
 	cp etc/init.d/$NAME /etc/init.d/
-	cp etc/sysconfig/$NAME /etc/sysconfig/
+	[ -f "/etc/sysconfig/$NAME" ] || cp etc/sysconfig/$NAME /etc/sysconfig/
 }
 
 setup_dirs() {
