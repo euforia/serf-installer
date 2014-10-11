@@ -26,10 +26,15 @@ PGREP="/usr/bin/pgrep -f"
 RETVAL=0
 
 start() {
-	echo -n "$NAME starting... "
-	$SERF_CMD 2>&1 >> $LOGFILE &
-	RETVAL=$?
-	echo "[ok]"
+	PIDS=$($PGREP "$SERF_CMD" | xargs)
+	if [ "$PIDS" != "" ]; then
+		echo "$NAME running... [ $PIDS ]"
+	else
+		echo -n "$NAME starting... "	
+		$SERF_CMD 2>&1 >> $LOGFILE &
+		RETVAL=$?
+		echo "[ok]"
+	fi
 }
 
 status() {
@@ -61,6 +66,7 @@ case "$1" in
 		;;
 	restart)
 		stop
+		sleep 3
 		start
 		;;
 	status)
