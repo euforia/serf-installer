@@ -7,16 +7,19 @@
 # processname: serf
 # description: serf agent
 #
+NAME="serf"
+BIN="/usr/local/bin/$NAME"
+LOGLEVEL="info"
+LOGFILE="/var/log/$NAME.log"
 
 # Source function library.
 . /etc/rc.d/init.d/functions
 
-NAME="serf"
-BIN="/usr/local/bin/$NAME"
-EVENT_HANDLER="/etc/$NAME/handlers/router.sh"
-LOGLEVEL="info"
-LOGFILE="/var/log/$NAME.log"
-CMD="$BIN agent -log-level=$LOGLEVEL -event-handler $EVENT_HANDLER"
+# sysconfig settings
+[ -f "/etc/sysconfig/$NAME" ] && . /etc/sysconfig/$NAME
+
+SERF_EVENT_HANDLER="/etc/$NAME/handlers/router.sh"
+SERF_CMD="$BIN agent -log-level=$LOGLEVEL -event-handler $SERF_EVENT_HANDLER -join $SERF_JOIN_NAME"
 
 PGREP="/usr/bin/pgrep -f"
 
@@ -24,13 +27,13 @@ RETVAL=0
 
 start() {
 	echo -n "$NAME starting... "
-	$CMD 2>&1 >> $LOGFILE &
+	$SERF_CMD 2>&1 >> $LOGFILE &
 	RETVAL=$?
 	echo "[ok]"
 }
 
 status() {
-	PIDS=$($PGREP "$CMD" | xargs)
+	PIDS=$($PGREP "$SERF_CMD" | xargs)
 	if [ "$PIDS" == "" ]; then
 		echo "$NAME not running!"
 	else
@@ -39,12 +42,12 @@ status() {
 }
 
 stop() {
-	PIDS=$($PGREP "$CMD" | xargs)
-	for PID in PIDS; do
-		echo -n "$NAME stopping... "
+	PIDS=$($PGREP "$SERF_CMD" | xargs)
+	echo -n "$NAME stopping... "
+	for PID in $PIDS; do
 		kill $PID
-		echo "[ok]"
 	done
+	echo "[ok]"
 	RETVAL=$?
 }
 

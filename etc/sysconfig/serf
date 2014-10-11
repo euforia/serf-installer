@@ -1,0 +1,2 @@
+## This should be set to the hostname or ip to join with
+#SERF_JOIN_NODE=
