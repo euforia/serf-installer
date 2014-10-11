@@ -19,7 +19,7 @@ LOGFILE="/var/log/$NAME.log"
 [ -f "/etc/sysconfig/$NAME" ] && . /etc/sysconfig/$NAME
 
 SERF_EVENT_HANDLER="/etc/$NAME/handlers/router.sh"
-SERF_CMD="$BIN agent -log-level=$LOGLEVEL -event-handler $SERF_EVENT_HANDLER -join $SERF_JOIN_NAME"
+SERF_CMD="$BIN agent -log-level=$LOGLEVEL -event-handler $SERF_EVENT_HANDLER -join $SERF_JOIN_NODE"
 
 PGREP="/usr/bin/pgrep -f"
 

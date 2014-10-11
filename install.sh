@@ -16,15 +16,14 @@ startup_script() {
 setup_dirs() {
 	echo " * Creating config directory..."
 	[ -e "$SERF_CFG_DIR" ] || mkdir $SERF_CFG_DIR
-	rsync -aH etc/$NAME/ $SERF_CFG_DIR
+	rsync -aH ./etc/$NAME/ $SERF_CFG_DIR
 }
 
 fetch_install_serf_bin() {
 	if [ ! -f "${SERF_INSTALL_DIR}/${NAME}" ]; then
 		echo " * Installing $NAME binary..."
 		cd /tmp;
-		wget "$SERF_PKG_URL";
-		unzip $SERF_PKG_NAME -d $SERF_INSTALL_DIR;
+		wget "$SERF_PKG_URL" && unzip $SERF_PKG_NAME -d $SERF_INSTALL_DIR;
 		cd -
 	else
 		echo " * $NAME binary found!"
