@@ -32,7 +32,7 @@ fetch_install_serf_bin() {
 
 case "$1" in 
 	all)
-		install_serf_bins
+		fetch_install_serf_bin
 		setup_dirs
 		startup_script
 		;;
