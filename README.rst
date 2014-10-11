@@ -7,9 +7,9 @@ It sets the **-event-handler** flag to **/etc/serf/handlers/router.sh**.  This c
 
 For example::
 
-	**member-join**
+**member-join**
 
-	All the scripts under **/etc/serf/handlers/member-join**  will sequentially be executed.
+All the scripts under **/etc/serf/handlers/member-join**  will sequentially be executed.
 
 Custom Events
 -------------
