@@ -8,6 +8,7 @@ SERF_INSTALL_DIR="/usr/local/bin"
 
 startup_script() {
 	cp -v etc/init.d/serf /etc/init.d/
+	cp -v etc/sysconfig/serf /etc/sysconfig/
 }
 
 setup_dirs() {
@@ -35,7 +36,8 @@ case "$1" in
 		startup_script
 		;;
 	serf)
-		fetch_install_serf_bin()
+		fetch_install_serf_bin
+		;;
 	*)
 		echo -e "\n  Usage:\n"
 		echo -e "    ./install.sh [ all | serf | serf-service ]\n"
