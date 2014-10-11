@@ -20,10 +20,10 @@ setup_dirs() {
 }
 
 fetch_install_serf_bin() {
-	if [ -e "$SERF_INSTALL_DIR/$NAME" ]; then
+	if [ -f "$SERF_INSTALL_DIR/$NAME" ]; then
 		echo " * Installing $NAME binary..."
 		cd /tmp;
-		wget "$SERF_BIN_URL";
+		wget "$SERF_PKG_URL";
 		unzip $SERF_PKG_NAME -d $SERF_INSTALL_DIR;
 		cd -
 	else
