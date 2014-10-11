@@ -26,7 +26,7 @@ fetch_install_serf_bin() {
 		wget "$SERF_PKG_URL" && unzip $SERF_PKG_NAME -d $SERF_INSTALL_DIR;
 		cd -
 	else
-		echo " * $NAME binary found!"
+		echo " * $NAME binary found"
 	fi
 }
 
