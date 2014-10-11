@@ -38,7 +38,7 @@ status() {
 		echo "$NAME not running!"
 	else
 		echo "$NAME running... [ $PIDS ]"
-		serf members
+		$BIN members
 	fi
 }
 
