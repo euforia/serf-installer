@@ -14,7 +14,7 @@ fi
 EVENT_HANDLER_DIR="$HANDLERS_DIR/$EVENT"
 
 ## Run all handlers for the event.
-for HANDLER_FILE in $(ls $EVENT_HANDLER_DIR | egrep -i "_handler\.[a-z]{2}"); do
+for HANDLER_FILE in $(ls $EVENT_HANDLER_DIR | egrep -i "_handler\.[a-z]{2}$"); do
 	HANDLER="$EVENT_HANDLER_DIR/$HANDLER_FILE"
 	[ -f "$HANDLER" -a -x "$HANDLER" ] && exec "$HANDLER" || :	
 done 
