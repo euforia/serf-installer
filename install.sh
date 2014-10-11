@@ -20,7 +20,7 @@ setup_dirs() {
 }
 
 fetch_install_serf_bin() {
-	if [ -f "${SERF_INSTALL_DIR}/${NAME}" ]; then
+	if [ ! -f "${SERF_INSTALL_DIR}/${NAME}" ]; then
 		echo " * Installing $NAME binary..."
 		cd /tmp;
 		wget "$SERF_PKG_URL";
